@@ -3,23 +3,25 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 import Dashboard from "../container/screens/main/Dashboard";
 import Profile from "../container/screens/main/Profile";
 import DrawerContent from '../container/components/DrawerContent';
+import CreateTrip from '../container/screens/main/CreateTrip';
 
 const MainStackNavigator = createStackNavigator(
     {
-        Dashboard: { screen: Dashboard},
+        Dashboard: { screen: Dashboard },
         Profile: { screen: Profile },
     },
     {
-        initialRouteName: "Main",
         navigationOptions: {
-            gesturesEnabled: false,
-        }
+            gestureEnabled: false,
+        },
     }
 );
 
+
+
 const DrawerNavigator = createDrawerNavigator(
     {
-        Dashboard: { screen: Dashboard},
+        Dashboard: { screen: Dashboard },
         Profile: { screen: Profile },
     },
     {
@@ -39,6 +41,8 @@ export default (MainRoot = () => {
         {
             Dashboard: DrawerNavigator,
             Main: MainStackNavigator,
+            CreateTrip: { screen: CreateTrip },
+
         },
         {
             initialRouteName: "Dashboard",

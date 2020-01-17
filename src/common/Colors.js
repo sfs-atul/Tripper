@@ -7,3 +7,5 @@ export const greyText = '#cccccc';
 export const textColor = '#333333';
 export const black = '#000'; 
 export const white = '#fff';
+export const darkGrey = '#454545';
+

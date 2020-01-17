@@ -6,7 +6,7 @@ let statusBarHeight = Platform.OS === 'ios' ? 22 : StatusBar.currentHeight;
 
 export default StyleSheet.create({
     container: {
-        flex: 1, alignItems: 'center', width: wp("100%"), backgroundColor: '#fff'
+        flex: 1, alignItems: 'center', width: wp("100%"), backgroundColor: white
     },
     container_center: {
         flex: 1,
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     },
 
     heading: {
-        color: '#000',
+        color: black,
         fontSize: hp("2.5%")
     },
 
@@ -40,7 +40,7 @@ export default StyleSheet.create({
     },
 
     text_input: {
-        color: '#000',
+        color: black,
         fontSize: hp("1%")
     },
 
@@ -49,15 +49,15 @@ export default StyleSheet.create({
         alignItems: 'center',
         borderColor: '#ccc',
         borderWidth: 1,
-        padding: 10,
+        padding: 15,
         textAlign: 'center',
         marginTop: hp('5%'),
-        color:'#000'
+        color: black
     },
 
     btn: {
         backgroundColor: colorPrimary,
-        padding: 10,
+        padding: 15,
         alignItems: 'center',
         marginTop: 10,
         width: wp('80%')
@@ -68,7 +68,7 @@ export default StyleSheet.create({
     },
 
     btn_text: {
-        color: '#fff',
+        color: white,
         fontSize: hp("2%"),
     },
 

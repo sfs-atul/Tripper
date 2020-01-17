@@ -1,25 +1,43 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import CommonStyle from '../../../common/CommonStyle';
-import Icon from 'react-native-vector-icons/Ionicons';
+import TripperScreen from './Tripper';
+import UdhaarbattaScreen from './Udhaarbatta';
+import KharchaScreen from './Kharcha';
+
+import { Container, Tab, Tabs } from 'native-base';
 
 class Dashboard extends Component {
-    static navigationOptions = {
-        headerLeft: () => (
-            <Icon name='ios-menu' size={30} />
-        ),
-    }
-
-    componentDidMount = () => {
-    }
-
-    render() {
-        return (
-            <View style={CommonStyle.container}>
-                <Text>Dashboard</Text>
-            </View>
-        );
-    }
+  render() {
+    return (
+      <Container>
+        <Tabs tabBarUnderlineStyle={{ backgroundColor: '#f95700ff' }}>
+          <Tab heading="Tripper"
+            textStyle={{ color: '#fff', }}
+            tabStyle={{ backgroundColor: '#00a4ccff' }}
+            activeTextStyle={{ color: '#f95700ff' }}
+            activeTabStyle={{ backgroundColor: '#00a4ccff' }}
+          >
+            <TripperScreen />
+          </Tab>
+          <Tab heading="Udhaarbatta"
+            textStyle={{ color: '#fff', }}
+            tabStyle={{ backgroundColor: '#00a4ccff' }}
+            activeTextStyle={{ color: '#f95700ff' }}
+            activeTabStyle={{ backgroundColor: '#00a4ccff' }}
+          >
+            <UdhaarbattaScreen />
+          </Tab>
+          <Tab heading="Kharcha"
+            textStyle={{ color: '#fff', }}
+            tabStyle={{ backgroundColor: '#00a4ccff' }}
+            activeTextStyle={{ color: '#f95700ff' }}
+            activeTabStyle={{ backgroundColor: '#00a4ccff' }}
+          >
+            <KharchaScreen />
+          </Tab>
+        </Tabs>
+      </Container>
+    );
+  }
 }
-
 export default Dashboard;
+

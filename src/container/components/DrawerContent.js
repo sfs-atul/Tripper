@@ -36,7 +36,6 @@ export default class DrawerContent extends Component {
 
 						<View style={styles.footer}>
 							<Text style={styles.copyright}>All rights reserved.</Text>
-							<Text style={styles.copyright}>V: {GLOBAL.CURRENT_APP_VERSION}</Text>
 						</View>
 					</View>
 				</View>
