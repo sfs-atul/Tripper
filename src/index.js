@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import {
-    View,
-} from "react-native";
-import LocalStorage from './common/LocalStorage';
 import { createRootNavigator } from './appRoot/Router'
 import { createAppContainer } from 'react-navigation';
 

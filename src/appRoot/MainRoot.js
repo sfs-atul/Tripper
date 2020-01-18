@@ -45,6 +45,7 @@ export default (MainRoot = () => {
 
         },
         {
+            headerMode:false,
             initialRouteName: "Dashboard",
             navigationOptions: {
                 gestureEnabled: false,
