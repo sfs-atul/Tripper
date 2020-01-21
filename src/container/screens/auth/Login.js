@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import CommonStyle from "../../../common/CommonStyle";
-import appLogo from '../../../assets/logo-tripper.png'
+import appLogo from '../../../assets/logo_tripper.png'
 
 class Login extends Component {
 

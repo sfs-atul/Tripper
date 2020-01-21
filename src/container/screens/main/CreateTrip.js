@@ -15,7 +15,7 @@ class CreateTrip extends Component {
     render() {
         return (
             <Container>
-                <CustomHeader title='Create New Trip' icon='arrow-back' onPress={() => this.props.navigation.goBack()} />
+                <CustomHeader title='Create New Trip' icon='arrow-back' onLeftPress={() => this.props.navigation.goBack()} />
                 <View style={CommonStyle.container}>
                     <TextInput
                         style={[CommonStyle.inputBox, { textAlign: 'left', width: ('90%') }]}
@@ -38,7 +38,7 @@ class CreateTrip extends Component {
                         returnKeyType={'done'}
                         maxLength={16}
                     />
-                    <TouchableOpacity style={[CommonStyle.btn, { width: wp('90%'), marginTop: hp('10%') }]}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('AddParticipants')} style={[CommonStyle.btn, { width: wp('90%'), marginTop: hp('10%') }]}>
                         <Text style={CommonStyle.btn_text}>Next</Text>
                     </TouchableOpacity>
                 </View>
