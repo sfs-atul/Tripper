@@ -4,13 +4,13 @@ import UdhaarbattaScreen from './Udhaarbatta';
 import KharchaScreen from './Kharcha';
 
 import { Container, Tab, Tabs } from 'native-base';
-import Header from '../../components/Header';
+import CustomHeader from '../../components/CustomHeader';
 
 class Dashboard extends Component {
   render() {
     return (
       <Container>
-        <Header IconName='menu' title='Dashboard'/>
+        <CustomHeader icon='menu' title='Dashboard' />
         <Tabs tabBarUnderlineStyle={{ backgroundColor: '#f95700ff' }}>
           <Tab heading="Tripper"
             textStyle={{ color: '#fff', }}

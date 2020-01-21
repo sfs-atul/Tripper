@@ -7,25 +7,15 @@ import {
 } from "react-native";
 import CommonStyle from "../../../common/CommonStyle";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-// import Header from "../../components/Header";
-import { Container, Header, Button, Title,Left,Icon,Body,Right } from "native-base";
+import CustomHeader from "../../components/CustomHeader";
+import { Container } from "native-base";
 
 class CreateTrip extends Component {
 
     render() {
         return (
             <Container>
-                <Header style={{backgroundColor:'red'}}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Header</Title>
-                    </Body>
-                    <Right />
-                </Header>
+                <CustomHeader title='Create New Trip' icon='arrow-back' onPress={() => this.props.navigation.goBack()} />
                 <View style={CommonStyle.container}>
                     <TextInput
                         style={[CommonStyle.inputBox, { textAlign: 'left', width: ('90%') }]}
