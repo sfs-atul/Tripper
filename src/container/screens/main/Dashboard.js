@@ -5,34 +5,35 @@ import KharchaScreen from './Kharcha';
 
 import { Container, Tab, Tabs } from 'native-base';
 import CustomHeader from '../../components/CustomHeader';
+import { secondPrimary, colorPrimary, white } from '../../../common/Colors';
 
 class Dashboard extends Component {
   render() {
     return (
       <Container>
         <CustomHeader icon='menu' title='Dashboard' />
-        <Tabs tabBarUnderlineStyle={{ backgroundColor: '#f95700ff' }}>
+        <Tabs tabBarUnderlineStyle={{ backgroundColor: secondPrimary }}>
           <Tab heading="Tripper"
-            textStyle={{ color: '#fff', }}
-            tabStyle={{ backgroundColor: '#00a4ccff' }}
-            activeTextStyle={{ color: '#f95700ff' }}
-            activeTabStyle={{ backgroundColor: '#00a4ccff' }}
+            textStyle={{ color: white, }}
+            tabStyle={{ backgroundColor: colorPrimary }}
+            activeTextStyle={{ color: secondPrimary }}
+            activeTabStyle={{ backgroundColor: colorPrimary }}
           >
             <TripperScreen />
           </Tab>
           <Tab heading="Udhaarbatta"
-            textStyle={{ color: '#fff', }}
-            tabStyle={{ backgroundColor: '#00a4ccff' }}
-            activeTextStyle={{ color: '#f95700ff' }}
-            activeTabStyle={{ backgroundColor: '#00a4ccff' }}
+            textStyle={{ color: white, }}
+            tabStyle={{ backgroundColor: colorPrimary }}
+            activeTextStyle={{ color: secondPrimary }}
+            activeTabStyle={{ backgroundColor: colorPrimary }}
           >
             <UdhaarbattaScreen />
           </Tab>
           <Tab heading="Kharcha"
-            textStyle={{ color: '#fff', }}
-            tabStyle={{ backgroundColor: '#00a4ccff' }}
-            activeTextStyle={{ color: '#f95700ff' }}
-            activeTabStyle={{ backgroundColor: '#00a4ccff' }}
+            textStyle={{ color: white, }}
+            tabStyle={{ backgroundColor: colorPrimary}}
+            activeTextStyle={{ color: secondPrimary}}
+            activeTabStyle={{ backgroundColor: colorPrimary }}
           >
             <KharchaScreen />
           </Tab>

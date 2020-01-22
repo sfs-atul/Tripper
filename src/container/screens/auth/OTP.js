@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import CommonStyle from "../../../common/CommonStyle";
+import { darkGrey } from "../../../common/Colors";
 
 class OTP extends Component {
     render() {
@@ -19,7 +20,7 @@ class OTP extends Component {
                     <TextInput
                         style={CommonStyle.inputBox}
                         placeholder={'Enter OTP'}
-                        placeholderTextColor={'#454545'}
+                        placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
                         keyboardType={'number-pad'}
                         maxLength={4}

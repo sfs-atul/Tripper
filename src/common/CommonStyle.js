@@ -1,6 +1,6 @@
 import { StyleSheet, Platform, StatusBar } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { colorPrimary, white, black, grey } from './Colors';
+import { colorPrimary, white, black, grey, greyText } from './Colors';
 
 let statusBarHeight = Platform.OS === 'ios' ? 22 : StatusBar.currentHeight;
 
@@ -16,7 +16,7 @@ export default StyleSheet.create({
 
     divider: {
         marginVertical: hp("1%"),
-        backgroundColor: black,
+        backgroundColor: greyText,
         width: wp("100%"),
         height: 0.8
     },
@@ -46,7 +46,6 @@ export default StyleSheet.create({
 
     inputBox: {
         width: wp('80%'),
-        alignItems: 'center',
         borderColor: '#ccc',
         borderWidth: 1,
         padding: 15,
@@ -59,7 +58,7 @@ export default StyleSheet.create({
         backgroundColor: colorPrimary,
         padding: 15,
         alignItems: 'center',
-        marginTop: 10,
+        marginTop: hp('2%'),
         width: wp('80%')
     },
 
@@ -78,4 +77,20 @@ export default StyleSheet.create({
         borderTopColor: '#333',
         borderTopWidth: 1,
     },
+    cardView: {
+        backgroundColor: white,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderBottomWidth: 2.5,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 10,
+        elevation: 1,
+        marginTop: 10,
+        height: hp('10%'),
+        width: wp('90%'),
+        justifyContent: 'center'
+    }
 });

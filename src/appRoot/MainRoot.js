@@ -5,6 +5,7 @@ import Profile from "../container/screens/main/Profile";
 import DrawerContent from '../container/components/DrawerContent';
 import CreateTrip from '../container/screens/main/CreateTrip';
 import AddParticipants from '../container/screens/main/AddParticipants';
+import ViewTrip from '../container/screens/main/ViewTrip';
 
 const MainStackNavigator = createStackNavigator(
     {
@@ -44,11 +45,12 @@ export default (MainRoot = () => {
             Main: MainStackNavigator,
             CreateTrip: { screen: CreateTrip },
             AddParticipants: { screen: AddParticipants },
-
+            ViewTrip: { screen: ViewTrip },
+            
         },
         {
             headerMode:false,
-            initialRouteName: "AddParticipants",
+            initialRouteName: "Dashboard",
             navigationOptions: {
                 gestureEnabled: false,
             }

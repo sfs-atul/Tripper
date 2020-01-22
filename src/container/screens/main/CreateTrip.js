@@ -9,7 +9,7 @@ import CommonStyle from "../../../common/CommonStyle";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import CustomHeader from "../../components/CustomHeader";
 import { Container } from "native-base";
-
+import { darkGrey } from '../../../common/Colors';
 class CreateTrip extends Component {
 
     render() {
@@ -20,25 +20,26 @@ class CreateTrip extends Component {
                     <TextInput
                         style={[CommonStyle.inputBox, { textAlign: 'left', width: ('90%') }]}
                         placeholder={'Trip Title'}
-                        placeholderTextColor={'#454545'}
+                        placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
                         maxLength={16}
                     />
                     <TextInput
                         style={[CommonStyle.inputBox, { textAlign: 'left', width: ('90%'), marginTop: hp('2%') }]}
                         placeholder={'Date'}
-                        placeholderTextColor={'#454545'}
+                        placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
                         maxLength={16}
                     />
                     <TextInput
-                        style={[CommonStyle.inputBox, { textAlignVertical: 'top', textAlign: 'left', width: ('90%'), marginTop: hp('2%'), height: hp('40%') }]}
+                        style={[CommonStyle.inputBox, { textAlign: 'left', width: ('90%'), marginTop: hp('2%'), paddingTop: 10, height: hp('40%') }]}
+                        multiline={true}
                         placeholder={'Description'}
-                        placeholderTextColor={'#454545'}
+                        placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
-                        maxLength={16}
+                        maxLength={100}
                     />
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('AddParticipants')} style={[CommonStyle.btn, { width: wp('90%'), marginTop: hp('10%') }]}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('AddParticipants')} style={[CommonStyle.btn,{ width: wp('90%'), top: hp('15%') }]}>
                         <Text style={CommonStyle.btn_text}>Next</Text>
                     </TouchableOpacity>
                 </View>

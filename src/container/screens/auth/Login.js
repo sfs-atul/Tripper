@@ -10,6 +10,7 @@ import {
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import CommonStyle from "../../../common/CommonStyle";
 import appLogo from '../../../assets/logo_tripper.png'
+import { darkGrey } from "../../../common/Colors";
 
 class Login extends Component {
 
@@ -28,7 +29,7 @@ class Login extends Component {
                     <TextInput
                         style={CommonStyle.inputBox}
                         placeholder={'Enter your Phone Number'}
-                        placeholderTextColor={'#454545'}
+                        placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
                         keyboardType={'number-pad'}
                         maxLength={10}
