@@ -6,7 +6,8 @@ import DrawerContent from '../container/components/DrawerContent';
 import CreateTrip from '../container/screens/main/CreateTrip';
 import AddParticipants from '../container/screens/main/AddParticipants';
 import ViewTrip from '../container/screens/main/ViewTrip';
-
+import { Dimensions } from 'react-native';
+import { white, greyText, secondPrimary } from "../common/Colors";
 const MainStackNavigator = createStackNavigator(
     {
         Dashboard: { screen: Dashboard },
@@ -27,15 +28,13 @@ const DrawerNavigator = createDrawerNavigator(
         Profile: { screen: Profile },
     },
     {
-        drawerPosition: "left",
-        drawerLockMode: "locked-closed",
-    }, {
-    contentComponent: DrawerContent,
-    contentOptions: {
-        activeTintColor: '#fff',
-        inactiveTintColor: '#ccc',
-    },
-}
+        contentComponent: DrawerContent,
+        drawerWidth: Dimensions.get('window').width - 150,
+        contentOptions: {
+            activeTintColor: secondPrimary,
+            inactiveTintColor: white,
+        },
+    }
 );
 
 export default (MainRoot = () => {
@@ -46,10 +45,9 @@ export default (MainRoot = () => {
             CreateTrip: { screen: CreateTrip },
             AddParticipants: { screen: AddParticipants },
             ViewTrip: { screen: ViewTrip },
-            
         },
         {
-            headerMode:false,
+            headerMode: false,
             initialRouteName: "Dashboard",
             navigationOptions: {
                 gestureEnabled: false,

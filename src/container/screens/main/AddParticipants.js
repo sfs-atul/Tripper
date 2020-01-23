@@ -16,7 +16,7 @@ import ProfilePic from '../../../assets/dummy_profile.jpg'
 import { darkGrey, white } from "../../../common/Colors";
 import tickIcon from '../../../assets/tick.png';
 import cross from '../../../assets/cross.png';
-const contacts = [
+const contactsData = [
     {
         name: 'First User',
         number: '+91974524558'
@@ -41,7 +41,7 @@ const contacts = [
         name: 'Sixth User',
         number: '+91974524558'
     },
-]
+];
 class AddParticipants extends Component {
 
     constructor(props) {
@@ -52,6 +52,7 @@ class AddParticipants extends Component {
             isModal: false
         }
     }
+
     onSelect = (item) => {
         const { selectedContact, selectedName } = this.state;
         var addContact = selectedContact, addName = selectedName;
@@ -72,7 +73,7 @@ class AddParticipants extends Component {
         let contacts;
         contacts = <FlatList
             keyExtractor={(item, index) => index.toString()}
-            data={contacts}
+            data={contactsData}
             renderItem={({ item, index }) =>
                 <TouchableOpacity key={index} onPress={() => this.onSelect(item, index)} style={{ flexDirection: 'row', paddingHorizontal: 10 }}>
                     <View>
@@ -126,22 +127,26 @@ class AddParticipants extends Component {
                 <View style={{ alignSelf: 'center', paddingHorizontal: 15, backgroundColor: white, height: hp('35%'), width: wp('70%') }}>
                     <Text style={[CommonStyle.heading, { marginTop: 20 }]}>App Participants</Text>
                     <TextInput
-                        style={[CommonStyle.inputBox, { textAlign: 'left', height: '15%', width: '100%' }]}
+                        style={[CommonStyle.inputBox, { textAlign: 'left', height: hp('6%'), width: '100%' }]}
                         placeholder={'Name'}
                         placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
                         maxLength={16}
                     />
                     <TextInput
-                        style={[CommonStyle.inputBox, { textAlign: 'left', height: '15%', width: '100%', marginTop: '4%' }]}
+                        style={[CommonStyle.inputBox, { textAlign: 'left', height: hp('6%'), width: '100%', marginTop: hp('2%') }]}
                         placeholder={'Contact Number'}
                         placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
                         maxLength={16}
                     />
                     <View style={{ flexDirection: 'row', marginTop: 40, alignSelf: 'flex-end' }}>
-                        <TouchableOpacity onPress={() => this.setState({ isModal: !this.state.isModal })} style={{ paddingHorizontal: 20 }}><Text style={CommonStyle.heading}>Cancel</Text></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.setState({ isModal: !this.state.isModal })}><Text style={CommonStyle.heading}>Ok</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.setState({ isModal: !this.state.isModal })}
+                            style={{ paddingHorizontal: 20 }}><Text style={CommonStyle.heading}>Cancel</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.setState({ isModal: !this.state.isModal })}>
+                            <Text style={CommonStyle.heading}>Ok</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
@@ -149,7 +154,6 @@ class AddParticipants extends Component {
     }
 
     render() {
-        console.log('this.state.isModal=>', this.state.isModal)
         const { selectedContact } = this.state
         return (
             <Container>

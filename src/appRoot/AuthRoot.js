@@ -13,7 +13,7 @@ export default AuthRoot = () => {
             initialRouteName: "Login",
             
             defaultNavigationOptions: {
-               // headerShown: false,
+                headerShown: false,
                 gestureEnabled: false,
             },
         }

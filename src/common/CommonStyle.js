@@ -48,7 +48,7 @@ export default StyleSheet.create({
         width: wp('80%'),
         borderColor: '#ccc',
         borderWidth: 1,
-        padding: 15,
+        padding: hp('2%'),
         textAlign: 'center',
         marginTop: hp('5%'),
         color: black
@@ -56,7 +56,7 @@ export default StyleSheet.create({
 
     btn: {
         backgroundColor: colorPrimary,
-        padding: 15,
+        padding: hp('2%'),
         alignItems: 'center',
         marginTop: hp('2%'),
         width: wp('80%')

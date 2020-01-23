@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { createRootNavigator } from './appRoot/Router'
 import { createAppContainer } from 'react-navigation';
+import LocalStorage from './common/LocalStorage';
 
 class App extends Component {
 
@@ -11,10 +12,10 @@ class App extends Component {
         }
     }
 
-    async componentDidMount() {
-        // let isLogin = await LocalStorage.read("isLogin");
+    componentDidMount = async () => {
+        let isLogin = await LocalStorage.read("isLogin");
         console.log('isLogin=>', isLogin);
-        let isLogin = true;
+        // let isLogin = true;
         this.setState({ isLogin });
     }
 

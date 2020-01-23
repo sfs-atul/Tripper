@@ -9,11 +9,13 @@ import {
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import CommonStyle from "../../../common/CommonStyle";
 import { darkGrey } from "../../../common/Colors";
-
+import CustomHeader from '../../components/CustomHeader';
+import { Container } from "native-base";
 class OTP extends Component {
     render() {
         return (
-            <View style={CommonStyle.container}>
+            <Container>
+                <CustomHeader icon='arrow-back' title='OTP' onLeftPress={() => this.props.navigation.goBack()} />
                 <StatusBar barStyle='dark-content' />
                 <View style={{ top: wp('40%'), justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={CommonStyle.heading}>OTP</Text>
@@ -29,7 +31,7 @@ class OTP extends Component {
                         <Text style={CommonStyle.btn_text}>Submit</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </Container>
         );
     }
 }

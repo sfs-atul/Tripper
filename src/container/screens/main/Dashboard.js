@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TripperScreen from './Tripper';
 import UdhaarbattaScreen from './Udhaarbatta';
 import KharchaScreen from './Kharcha';
-
 import { Container, Tab, Tabs } from 'native-base';
 import CustomHeader from '../../components/CustomHeader';
 import { secondPrimary, colorPrimary, white } from '../../../common/Colors';
@@ -11,7 +10,8 @@ class Dashboard extends Component {
   render() {
     return (
       <Container>
-        <CustomHeader icon='menu' title='Dashboard' />
+        <CustomHeader icon='menu' title='Dashboard' onLeftPress={() => this.props.navigation.openDrawer()
+        } />
         <Tabs tabBarUnderlineStyle={{ backgroundColor: secondPrimary }}>
           <Tab heading="Tripper"
             textStyle={{ color: white, }}
@@ -31,8 +31,8 @@ class Dashboard extends Component {
           </Tab>
           <Tab heading="Kharcha"
             textStyle={{ color: white, }}
-            tabStyle={{ backgroundColor: colorPrimary}}
-            activeTextStyle={{ color: secondPrimary}}
+            tabStyle={{ backgroundColor: colorPrimary }}
+            activeTextStyle={{ color: secondPrimary }}
             activeTabStyle={{ backgroundColor: colorPrimary }}
           >
             <KharchaScreen />

@@ -1,42 +1,75 @@
 import React, { Component } from 'react';
-
 import {
-	StyleSheet,
 	Text,
 	View,
 	TouchableOpacity,
 	ScrollView,
-	AsyncStorage,
-	Platform
 } from 'react-native';
 
-import { DrawerItems } from 'react-navigation';
+import { DrawerItems } from 'react-navigation-drawer';
+import CommonStyle from '../../common/CommonStyle';
+import { Thumbnail, Icon } from 'native-base';
+import ProfilePic from '../../assets/dummy_profile.jpg'
+import { colorPrimary, white } from '../../common/Colors';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { GoogleSignin } from 'react-native-google-signin';
 
 
 export default class DrawerContent extends Component {
 
+	logoutGoogle = async () => {
+		try {
+			await GoogleSignin.revokeAccess();
+			await GoogleSignin.signOut();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+	logoutFacebook = async () => {
+		try {
+			await GoogleSignin.revokeAccess();
+			await GoogleSignin.signOut();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+	logout = (userType) => {
+		if (userType == 'google') {
+			this.logoutGoogle();
+		}else if(userType == 'facebook'){
+			this.logoutFacebook();
+		}else{
+
+		}
+	}
+
 	render() {
 		return (
 
-			<ScrollView style={{ flex: 1 }}>
-				<View style={styles.container}>
+			<ScrollView style={{ flex: 1, backgroundColor: colorPrimary }}>
+				<View style={{ backgroundColor: colorPrimary, marginTop: 22 }}>
 					<View>
-						<View style={styles.header}>
-							<Text style={styles.app_heading}>Tripper</Text>
+						<View style={{ alignItems: 'flex-end', marginEnd: 10 }}>
+							<TouchableOpacity onPress={() => this.props.navigation.closeDrawer()}>
+								<Icon name='close' style={{ fontSize: 32, color: white }} />
+							</TouchableOpacity>
 						</View>
-						<DrawerItems {...this.props} />
-						<TouchableOpacity style={styles.btn_modal}>
-							<Text style={styles.btn_text_modal}>Profile</Text>
-						</TouchableOpacity>
+						<View style={{ position: 'absolute', marginTop: hp('3%'), marginStart: 15 }}>
+							<Thumbnail large source={ProfilePic} />
+						</View>
+						<View style={{ marginTop: hp('10%'), marginStart: 20 }}>
+							<Text style={{ color: white, fontSize: hp('2.5%'), fontWeight: 'bold' }}>{'User Name'}</Text>
+							<Text style={{ color: white }}>{'+91-8354653321'}</Text>
+						</View>
+						<View style={CommonStyle.divider} />
+						<View>
+							<DrawerItems {...this.props} />
+						</View>
 					</View>
 					<View>
-						<TouchableOpacity style={styles.nav_item}>
-							<Text style={styles.nav_text}>Logout</Text>
+						<TouchableOpacity style={{ marginStart: 15, marginTop:5 }} onPress={()=>this.logoutGoogle()}>
+							<Text style={{ fontSize: 14, color: white, fontWeight: '700' }}>Logout</Text>
 						</TouchableOpacity>
-
-						<View style={styles.footer}>
-							<Text style={styles.copyright}>All rights reserved.</Text>
-						</View>
 					</View>
 				</View>
 			</ScrollView>
@@ -45,118 +78,4 @@ export default class DrawerContent extends Component {
 
 	}
 
-
-
-	logout = () => {
-		getApi(GLOBAL.LOGOUT, {}, this.successLogout, this.errorLogout);
-	}
-
-	successLogout = (response) => {
-		console.log("logout response : ", response);
-		if (response.data.status == 200) {
-			AsyncStorage.removeItem('@loyaltechs_settings');
-
-			GLOBAL.EMAIL = '';
-			GLOBAL.PASS = '';
-			GLOBAL.USER_ROLE = '';
-			GLOBAL.TOKEN = '';
-			GLOBAL.LOGGED_IN = false;
-
-			//return this.props.navigation.navigate('Login');
-			return this.props.navigation.navigate('Splash');
-		} else {
-			console.log('logout response.status ', response.data.status);
-		}
-	}
-
-	errorLogout = (error) => {
-		console.log("logout error : ", error);
-		AsyncStorage.removeItem('@loyaltechs_settings');
-
-		GLOBAL.EMAIL = '';
-		GLOBAL.PASS = '';
-		GLOBAL.USER_ROLE = '';
-		GLOBAL.TOKEN = '';
-		GLOBAL.LOGGED_IN = false;
-
-		return this.props.navigation.navigate('Splash');
-	}
-
 } /// End class
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'space-between',
-		marginTop: Platform.OS == 'ios' ? 32 : 0
-
-	},
-
-	header: {
-		padding: 20,
-		backgroundColor: '#fa324f'
-	},
-
-	app_heading: {
-		//textAlign: 'center',
-		color: '#fff',
-		fontSize: 20,
-		fontWeight: 'bold'
-	},
-
-
-	btn_modal: {
-		flexDirection: 'row',
-		padding: 10,
-		borderBottomWidth: 1,
-		borderBottomColor: '#333',
-	},
-
-	btn_icon: {
-		color: '#ccc',
-		fontSize: 20,
-		marginLeft: 10,
-		marginRight: 36,
-		width: 20,
-		//backgroundColor: '#fff',
-		textAlign: 'center'
-	},
-
-	btn_text_modal: {
-		color: '#ccc',
-		fontSize: 14,
-		fontWeight: 'bold',
-		//margin: 5,
-	},
-
-	table_row: {
-		flexDirection: 'row',
-		padding: 15
-	},
-
-	box_float: {
-		flex: 1,
-	},
-
-	nav_item: {
-		padding: 15,
-		backgroundColor: '#444',
-	},
-
-	nav_text: {
-		fontSize: 15,
-		color: '#ccc',
-		fontWeight: 'bold',
-	},
-
-	copyright: {
-		color: '#fff',
-		//fontSize: 12
-	},
-
-	footer: {
-		padding: 10,
-		backgroundColor: '#333',
-	}
-
-});
