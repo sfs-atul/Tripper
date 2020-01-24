@@ -11,7 +11,34 @@ import CommonStyle from "../../../common/CommonStyle";
 import { darkGrey } from "../../../common/Colors";
 import CustomHeader from '../../components/CustomHeader';
 import { Container } from "native-base";
+import LocalStorage from '../../../common/LocalStorage';
+import firebase from 'react-native-firebase';
+
 class OTP extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            otp: '',
+            cnf: this.props.navigation.getParam("cnf")
+        }
+    }
+
+    confirmOtp = () => {
+        const { otp, cnf } = this.state;
+
+        cnf.confirm(otp)
+            .then(res => this.successOtp(res))
+            .catch(error => console.log('errorOtp=>', error))
+    }
+
+    successOtp = (res) => {
+        console.log('successOtp=>', res)
+        // LocalStorage.save('isLogin', true);
+        this.props.navigation.navigate('Dashboard');
+    }
+
+
     render() {
         return (
             <Container>
@@ -25,9 +52,11 @@ class OTP extends Component {
                         placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
                         keyboardType={'number-pad'}
-                        maxLength={4}
+                        maxLength={6}
+                        onChangeText={(otp) => this.setState({ otp })}
+                        value={this.state.otp}
                     />
-                    <TouchableOpacity style={CommonStyle.btn} onPress={() => this.props.navigation.navigate('OTP')}>
+                    <TouchableOpacity style={CommonStyle.btn} onPress={() => this.confirmOtp()}>
                         <Text style={CommonStyle.btn_text}>Submit</Text>
                     </TouchableOpacity>
                 </View>

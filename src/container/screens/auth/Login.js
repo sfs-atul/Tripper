@@ -7,9 +7,15 @@ import appLogo from '../../../assets/logo_tripper.png';
 import { darkGrey } from "../../../common/Colors";
 import CommonStyle from "../../../common/CommonStyle";
 import LocalStorage from '../../../common/LocalStorage';
-
+import Utils from '../../../common/Utils';
+import firebase from 'react-native-firebase';
 class Login extends Component {
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            phone: ''
+        }
+    }
     componentDidMount() {
         GoogleSignin.configure({
             webClientId: '728043635483-m906088bogfnese040hrbbdnepmt05id.apps.googleusercontent.com'
@@ -46,13 +52,31 @@ class Login extends Component {
                     );
                     LocalStorage.save('isLogin', true);
                     LocalStorage.save('userType', 'facebook');
-                    this.props.navigation.navigate('Dashboard')
+                    this.props.navigation.navigate('Dashboard');
                 }
             },
             function (error) {
                 console.log("Login fail with error: " + error);
             }
         );
+    }
+
+    checkNumber = (num) => {
+        Utils.onChangeNumber(num);
+    }
+
+    loginPhone = () => {
+        const {phone} = this.state;
+        let phoneNumber = '+91' + phone
+
+        firebase.auth().signInWithPhoneNumber(phoneNumber)
+            .then(res => this.successLogin(res))
+            .catch(error => console.log('error=>', error));
+    }
+
+    successLogin = (res) => {
+        console.log('Success login=>',res)
+        this.props.navigation.navigate('OTP',{cnf:res});
     }
 
     render() {
@@ -66,13 +90,15 @@ class Login extends Component {
                     <TextInput
                         style={CommonStyle.inputBox}
                         placeholder={'Enter your Phone Number'}
+                        onChangeText={(phone) => this.setState({phone})}
+                        value={this.state.phone}
                         placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
                         keyboardType={'number-pad'}
                         maxLength={10}
                     />
                     <TouchableOpacity style={CommonStyle.btn}
-                        onPress={() => this.props.navigation.navigate('OTP')}>
+                        onPress={() => this.loginPhone()}>
                         <Text style={CommonStyle.btn_text}>Login</Text>
                     </TouchableOpacity>
                     <View style={{ alignItems: 'center', marginTop: hp('5%') }}>
