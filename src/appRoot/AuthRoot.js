@@ -10,7 +10,7 @@ export default AuthRoot = () => {
             OTP: { screen: OTP },
         },
         {
-            initialRouteName: "Login",
+            initialRouteName: 'Login',
             
             defaultNavigationOptions: {
                 headerShown: false,

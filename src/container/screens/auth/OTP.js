@@ -34,7 +34,8 @@ class OTP extends Component {
 
     successOtp = (res) => {
         console.log('successOtp=>', res)
-        // LocalStorage.save('isLogin', true);
+        LocalStorage.save('userType', 'phone');
+        LocalStorage.save('isLogin', true);
         this.props.navigation.navigate('Dashboard');
     }
 
@@ -53,7 +54,7 @@ class OTP extends Component {
                         returnKeyType={'done'}
                         keyboardType={'number-pad'}
                         maxLength={6}
-                        onChangeText={(otp) => this.setState({ otp })}
+                        onChangeText={(num) => this.setState({ otp : Utils.onChangeNumber(num) })}
                         value={this.state.otp}
                     />
                     <TouchableOpacity style={CommonStyle.btn} onPress={() => this.confirmOtp()}>

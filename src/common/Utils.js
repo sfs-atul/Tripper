@@ -1,5 +1,7 @@
-import {Alert, NetInfo } from 'react-native';
+import { Alert } from 'react-native';
+import NetInfo from "@react-native-community/netinfo";
 import LocalStorage from './LocalStorage';
+import { NavigationActions, StackActions } from 'react-navigation';
 
 var Utils = {
 
@@ -48,7 +50,15 @@ var Utils = {
                 newText = newText + text[i];
             }
         }
-        return newText
+        return newText;
+    },
+    
+    validPhoneNumber: (text) => {
+        if (text.length < 10) {
+            return false;
+        } else {
+            return true;
+        }
     },
 
     onChangeCharacter: (text) => {
@@ -77,7 +87,16 @@ var Utils = {
         GLOBAL.USERNAME = '';
         GLOBAL.LOGGED_IN = false;
         GLOBAL.AUTH_TOKEN = '';
-    }
+    },
+
+    resetNav: (screen, navigator) => {
+
+        const resetAction = StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: screen })],
+        });
+        navigator.dispatch(resetAction);
+    },
 };
 
 module.exports = Utils;

@@ -1,4 +1,4 @@
-import { Body, Button, Header, Icon, Left, Right, Title, Image } from "native-base";
+import { Body, Button, Header, Icon, Left, Right, Title } from "native-base";
 import React, { Component } from "react";
 import { View, Text } from 'react-native';
 import { withNavigation } from 'react-navigation';
@@ -16,7 +16,7 @@ class CustomHeader extends Component {
                 <Body style={{ flex: 2}}>
                     {this.props.headerLeft ?
                       <View style={{alignSelf:'flex-start',right:50}}>
-                          <Text style={{ color: white, fontSize: 20, fontWeight: 'bold',marginTop:10 }}>{this.props.leftTitle}</Text>
+                          <Text style={{ color: white, fontSize: 20, fontWeight: 'normal',marginTop:10 }}>{this.props.leftTitle}</Text>
                           <Text style={{ color: white}}>{this.props.leftDate}</Text>
                       </View>
                         :

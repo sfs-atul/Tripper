@@ -9,22 +9,29 @@ class App extends Component {
         super(props)
         this.state = {
             isLogin: false,
+            isCheckLogin: false
         }
     }
 
+
     componentDidMount = async () => {
         let isLogin = await LocalStorage.read("isLogin");
-        console.log('isLogin=>', isLogin);
-        // let isLogin = true;
-        this.setState({ isLogin });
+        console.log('isLogin index=>', isLogin);
+        this.setState({ isLogin: true, isCheckLogin: true });
     }
 
     render() {
-        const { isLogin } = this.state;
+        const { isLogin, isCheckLogin } = this.state;
         const AppStackContainer = createAppContainer(createRootNavigator(isLogin));
-        return (
-            <AppStackContainer />
-        );
+
+        if (!isCheckLogin) {
+            return null;
+        } else {
+            return (
+                <AppStackContainer />
+            );
+        }
+
     }
 }
 export default App;

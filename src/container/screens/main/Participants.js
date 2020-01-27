@@ -2,28 +2,24 @@ import React, { Component } from "react";
 import {
     View,
     Text,
-    FlatList
+    FlatList,
+    TouchableOpacity
 } from "react-native";
 import { darkGrey, white } from "../../../common/Colors";
 import ProfilePic from '../../../assets/dummy_profile.jpg'
 import CommonStyle from "../../../common/CommonStyle";
-import { Container, Thumbnail, Icon } from "native-base";
+import {Thumbnail, Container } from "native-base";
+import { withNavigation } from "react-navigation";
 
-const users = [
+
+const usersList = [
     {
         name: 'First User',
-        number: '+91974524558'
+        number: 'INR 0.00 (0.00)'
     },
     {
         name: 'Second User',
-        number: '+91974524558'
-    },
-    {
-        name: 'Third User',
-        number: '+91974524558'
-    },{
-        name: 'Third User',
-        number: '+91974524558'
+        number: 'INR 0.00 (0.00)'
     },
 ]
 class Participants extends Component {
@@ -32,9 +28,9 @@ class Participants extends Component {
         let users;
         users = <FlatList
             keyExtractor={(item, index) => index.toString()}
-            data={users}
+            data={usersList}
             renderItem={({ item, index }) =>
-                <TouchableOpacity key={index} onPress={() => this.onSelect(item, index)} style={{ flexDirection: 'row', paddingHorizontal: 10 }}>
+                <TouchableOpacity key={index} onPress={() => this.props.navigation.navigate('AddExpenses')} style={{ flexDirection: 'row', paddingHorizontal: 10 }}>
                     <View>
                         <Thumbnail large source={ProfilePic} />
                     </View>
@@ -50,10 +46,10 @@ class Participants extends Component {
     }
     render() {
         return (
-            <View style={[CommonStyle.container]}>
+            <Container>
                 {this.renderUsers()}
-            </View>
+            </Container>
         );
     }
 }
-export default Participants;
+export default withNavigation(Participants);

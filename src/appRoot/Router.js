@@ -4,11 +4,11 @@ import MainRoot from './MainRoot';
 
 export const createRootNavigator = (isLogin) => {
 
-    console.log('isLogin=>', isLogin);
+    console.log('isLogin Router=>', isLogin);
     return createSwitchNavigator(
         {
             LoginRoot: { screen: AuthRoot() },
-            MainRoot: { screen: MainRoot(isLogin) }
+            MainRoot: { screen: MainRoot() }
         },
         {
             initialRouteName: (!isLogin) ? "LoginRoot" : "MainRoot"

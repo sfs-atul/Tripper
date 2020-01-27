@@ -8,6 +8,7 @@ import AddParticipants from '../container/screens/main/AddParticipants';
 import ViewTrip from '../container/screens/main/ViewTrip';
 import { Dimensions } from 'react-native';
 import { white, greyText, secondPrimary } from "../common/Colors";
+import AddExpenses from "../container/screens/main/AddExpenses";
 const MainStackNavigator = createStackNavigator(
     {
         Dashboard: { screen: Dashboard },
@@ -45,6 +46,7 @@ export default (MainRoot = () => {
             CreateTrip: { screen: CreateTrip },
             AddParticipants: { screen: AddParticipants },
             ViewTrip: { screen: ViewTrip },
+            AddExpenses: {screen: AddExpenses}
         },
         {
             headerMode: false,

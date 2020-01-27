@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image, StatusBar, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { LoginManager } from "react-native-fbsdk";
+import firebase from 'react-native-firebase';
 import { GoogleSignin, statusCodes } from 'react-native-google-signin';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import appLogo from '../../../assets/logo_tripper.png';
@@ -8,7 +9,8 @@ import { darkGrey } from "../../../common/Colors";
 import CommonStyle from "../../../common/CommonStyle";
 import LocalStorage from '../../../common/LocalStorage';
 import Utils from '../../../common/Utils';
-import firebase from 'react-native-firebase';
+import { GOOGLE_KEY } from "../../../CREDENTIALS";
+
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -16,19 +18,19 @@ class Login extends Component {
             phone: ''
         }
     }
+
     componentDidMount() {
         GoogleSignin.configure({
-            webClientId: '728043635483-m906088bogfnese040hrbbdnepmt05id.apps.googleusercontent.com'
+            webClientId: GOOGLE_KEY
         });
     }
 
     loginGoogle = async () => {
+        let userType = 'google'
         try {
             const userInfo = await GoogleSignin.signIn();
             console.log('userInfo=>', userInfo);
-            LocalStorage.save('isLogin', true);
-            LocalStorage.save('userType', 'google');
-            this.props.navigation.navigate('Dashboard')
+            this.goToDashboard(userType);
         } catch (error) {
             if (error.code === statusCodes.SIGN_IN_REQUIRED) {
                 // user has not signed in yet
@@ -40,19 +42,15 @@ class Login extends Component {
         }
     }
 
-    loginFacebook = () => {
+    loginFacebook = async () => {
+        let userType = 'facebook'
         LoginManager.logInWithPermissions(["public_profile"]).then(
-            function (result) {
+            async (result) => {
                 if (result.isCancelled) {
                     console.log("Login cancelled");
                 } else {
-                    console.log(
-                        "Login success with permissions: " +
-                        result.grantedPermissions.toString()
-                    );
-                    LocalStorage.save('isLogin', true);
-                    LocalStorage.save('userType', 'facebook');
-                    this.props.navigation.navigate('Dashboard');
+                    console.log("Login success with permissions: " + result.grantedPermissions.toString());
+                    this.goToDashboard(userType);
                 }
             },
             function (error) {
@@ -61,22 +59,31 @@ class Login extends Component {
         );
     }
 
-    checkNumber = (num) => {
-        Utils.onChangeNumber(num);
-    }
-
     loginPhone = () => {
-        const {phone} = this.state;
-        let phoneNumber = '+91' + phone
+        const { phone } = this.state;
+        let phoneNumber = '+91' + phone;
 
-        firebase.auth().signInWithPhoneNumber(phoneNumber)
-            .then(res => this.successLogin(res))
-            .catch(error => console.log('error=>', error));
+        if (Utils.isEmpty(phone)) {
+            alert('Please enter phone number.')
+        }else if(!Utils.validPhoneNumber(phone)){
+            alert('Please enter a valid number.')
+        }else {
+            firebase.auth().signInWithPhoneNumber(phoneNumber)
+                .then(res => this.successLogin(res))
+                .catch(error => console.log('error=>', error));
+        }
     }
 
-    successLogin = (res) => {
-        console.log('Success login=>',res)
-        this.props.navigation.navigate('OTP',{cnf:res});
+    successLogin = async (res) => {
+        console.log('Success login=>', res)
+        this.props.navigation.navigate('OTP', { cnf: res });
+    }
+
+    goToDashboard = (userType) => {
+        console.log('userType=>', userType)
+        LocalStorage.save('userType', userType);
+        LocalStorage.save('isLogin', true);
+        this.props.navigation.navigate('Dashboard');
     }
 
     render() {
@@ -90,7 +97,7 @@ class Login extends Component {
                     <TextInput
                         style={CommonStyle.inputBox}
                         placeholder={'Enter your Phone Number'}
-                        onChangeText={(phone) => this.setState({phone})}
+                        onChangeText={(num) => this.setState({ phone: Utils.onChangeNumber(num) })}
                         value={this.state.phone}
                         placeholderTextColor={darkGrey}
                         returnKeyType={'done'}
