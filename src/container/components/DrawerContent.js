@@ -4,6 +4,7 @@ import {
 	View,
 	TouchableOpacity,
 	ScrollView,
+	Alert
 } from 'react-native';
 import { DrawerItems } from 'react-navigation-drawer';
 import CommonStyle from '../../common/CommonStyle';
@@ -22,7 +23,7 @@ class DrawerContent extends Component {
 		try {
 			await GoogleSignin.revokeAccess();
 			await GoogleSignin.signOut();
-			this.removeUser();
+			this.removeUserInfo();
 		} catch (error) {
 			console.error(error);
 		}
@@ -30,7 +31,7 @@ class DrawerContent extends Component {
 
 	logoutFacebook = async () => {
 		LoginManager.logOut();
-		this.removeUser();
+		this.removeUserInfo();
 	}
 
 
@@ -45,11 +46,11 @@ class DrawerContent extends Component {
 			console.log('userType=>', user)
 			this.logoutFacebook();
 		} else {
-			this.removeUser();
+			this.removeUserInfo();
 		}
 	}
 
-	removeUser = async () => {
+	removeUserInfo = async () => {
 		await LocalStorage.flushQuestionKeys();
 		this.props.navigation.navigate('Login');
 	}
