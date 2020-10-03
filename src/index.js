@@ -16,7 +16,6 @@ class App extends Component {
 
     componentDidMount = async () => {
         let isLogin = await LocalStorage.read("isLogin");
-        console.log('isLogin index=>', isLogin);
         this.setState({ isLogin: true, isCheckLogin: true });
     }
 
